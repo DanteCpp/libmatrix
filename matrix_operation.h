@@ -1,8 +1,0 @@
-
-#ifndef _MATRIX_OPERATIONS_H
-#define _MATRIX_OPERATIONS_H
-
-
-
-
-#endif /* _MATRIX_OPERATIONS_H */
