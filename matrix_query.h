@@ -4,11 +4,13 @@
 
 int matrix_same_size( Matrix *, Matrix *);
 
-int matrix_issquare( Matrix * );
+int matrix_is_square( Matrix * );
 
-int matrix_isvector( Matrix * );
+int matrix_is_vector( Matrix * );
 
-int matrix_equal( Matrix *, Matrix * );
+int matrix_is_equal( Matrix *, Matrix * );
+
+int matrix_is_sigular( Matrix * );
 
 int matrix_can_mul( Matrix *, Matrix * );
 
