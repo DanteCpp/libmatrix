@@ -7,7 +7,7 @@ NAME = libmatrix
 
 # flags
 CPPFLAGS = -DVERSION=\"${VERSION}\" 
-CFLAGS = -std=c99 -pedantic -Wall -Wextra -pedantic -O3 ${CPPFLAGS} 
+CFLAGS = -lm -std=c99 -pedantic -Wall -Wextra -pedantic -O3 ${CPPFLAGS} 
 
 # compiler and linker
 CC = gcc
