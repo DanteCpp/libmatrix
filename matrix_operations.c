@@ -101,7 +101,7 @@ matrix_determinant( Matrix *m )
 }
 
 Matrix *
-matrix_inverse__( Matrix * mat )
+matrix_inverse_gauss( Matrix * mat )
 {
     if( !matrix_is_square(mat) )
         matrix_error("matrix_inverse(): !matrix_is_square(m)")

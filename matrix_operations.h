@@ -14,6 +14,8 @@ Real matrix_trace( Matrix * );
 
 Real matrix_determinant( Matrix * );
 
+Matrix * matrix_inverse_gauss( Matrix * );
+
 Matrix * matrix_inverse( Matrix * );
 
 Matrix * matrix_cofactors( Matrix * );
