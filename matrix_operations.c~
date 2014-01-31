@@ -185,10 +185,3 @@ matrix_adjunct( Matrix * m )
     matrix_destroy(r);
     return t;
 }
-
-Matrix *
-matrix_inverse( Matrix * m )
-{
-	Matrix * adj = matrix_adjunct(m);
-    return matrix_scalar_mul(1/matrix_determinant(m),adj);
-}
