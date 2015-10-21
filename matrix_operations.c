@@ -22,7 +22,7 @@ matrix_add( Matrix * m1, Matrix * m2 )
 }
 
 Matrix *
-matrix_scalar_mul( Real s, Matrix * m)
+matrix_scalar_mul( Field s, Matrix * m)
 {
     Matrix * mul = matrix_new(m->rows,m->columns);
 
@@ -65,10 +65,10 @@ matrix_multiplication( Matrix * m1, Matrix * m2 )
     return mul;
 }
 
-Real
+Field
 matrix_trace( Matrix * m )
 {
-    Real tr = 0;
+    Field tr = 0;
     Matrix * d = matrix_get_diagonal(m);
 
     for( int i = 0 ; i < d->columns ; i++ )
@@ -80,7 +80,7 @@ matrix_trace( Matrix * m )
     return tr;
 }
 
-Real
+Field
 matrix_determinant( Matrix *m )
 {
     if( m->columns == 1)
@@ -89,7 +89,7 @@ matrix_determinant( Matrix *m )
     if ( m->columns == 2 )
         return m->values[0][0] * m->values[1][1] - m->values[1][0] * m->values[0][1]
             ;
-    Real det = 0;
+    Field det = 0;
     Matrix * minor = NULL;
     for ( int column = 0; column < m->columns; column++ )
     {
@@ -116,7 +116,7 @@ matrix_inverse_gauss( Matrix * mat )
     matrix_put_sub(i,0,m->rows,m);
 
     int temp;
-    Real r, temporary;
+    Field r, temporary;
 
     for ( int j = 0; j < m->rows; j++)
     {

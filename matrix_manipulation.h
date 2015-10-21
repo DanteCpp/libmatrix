@@ -13,6 +13,6 @@ void matrix_put_row( Matrix *, int, Matrix * );
 void matrix_put_column( Matrix *, int, Matrix * );
 void matrix_put_diagonal( Matrix *, Matrix * );
 
-void matrix_filter( Matrix *, Real (*)(Real) );
+void matrix_filter( Matrix *, Field (*)(Field) );
 
 #endif /*_MATRIX_MANIPULATION_H*/

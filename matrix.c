@@ -60,7 +60,7 @@ matrix_fill_random( Matrix *m )
 
     for ( int row = 0; row < m->rows; row++ )
         for ( int column = 0; column < m->columns; column++ )
-            m->values[row][column] = (Real) rand() / (RAND_MAX)
+            m->values[row][column] = (Field) rand() / (RAND_MAX)
                 ;
 }
 
@@ -93,7 +93,7 @@ matrix_fill( Matrix *m, ... )
  	if( digit == NULL)
         matrix_error("matrix_fill(): digit == NULL")
             ;
- 	Real * digits = malloc( m->columns * sizeof(Real));
+ 	Field * digits = malloc( m->columns * sizeof(Field));
  	if( digits == NULL)
         matrix_error("matrix_fill(): digits == NULL")
                 ;
@@ -181,10 +181,10 @@ matrix_copy( Matrix *from, Matrix * to )
 }
 
 void
-matrix_fill_real( Matrix *m , Real r )
+matrix_fill_Field( Matrix *m , Field r )
 {
   if ( m == NULL )
-    matrix_error("matrix_fill_real(): m == NULL")
+    matrix_error("matrix_fill_Field(): m == NULL")
         ;
 
   for ( int row = 0; row < m->rows; row++ )
@@ -227,7 +227,7 @@ matrix_new_identity( int dim )
     Matrix * i = matrix_new_zero(dim,dim);
     Matrix * d = matrix_new(1,dim);
 
-    matrix_fill_real(d,1);
+    matrix_fill_Field(d,1);
     matrix_put_diagonal(d,i);
 
     matrix_destroy(d);
@@ -240,13 +240,13 @@ matrix_new_zero( int rows, int columns )
 {
     Matrix * m = matrix_new(rows,columns);
 
-    matrix_fill_real(m,0);
+    matrix_fill_Field(m,0);
 
     return m;
 }
 
 Matrix *
-matrix_new_scalar( int dim, Real r )
+matrix_new_scalar( int dim, Field r )
 {
     Matrix * m = matrix_new_identity(dim);
 
@@ -269,9 +269,8 @@ matrix_new_values( int rows, int columns, ... )
 
     for( int y = 0 ; y < rows ; y++ )
         for( int x = 0; x < columns ; x++ )
-            m->values[y][x] = va_arg( entry, Real )
+            m->values[y][x] = va_arg( entry, Field )
                 ;
 	va_end(entry);
 	return m;
 }
-

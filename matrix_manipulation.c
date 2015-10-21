@@ -45,8 +45,8 @@ matrix_get_sub( int x1 , int x2, Matrix * m, int y1, int y2 )
 	Matrix *minor = matrix_new_zero( x2-x1+1, y2-y1+1 );
 
 	int i = 0;
-    Real *temp = malloc( minor->rows * minor->columns * sizeof(Real) );
-    memset(temp,minor->rows * minor->columns, sizeof(Real));
+    Field *temp = malloc( minor->rows * minor->columns * sizeof(Field) );
+    memset(temp,minor->rows * minor->columns, sizeof(Field));
 
     if( temp == NULL )
         matrix_error("matrix_get_minor(): temp == NULL")
@@ -174,7 +174,7 @@ matrix_put_diagonal( Matrix * d, Matrix * m )
 }
 
 void
-matrix_filter( Matrix * m, Real (*func)(Real) )
+matrix_filter( Matrix * m, Field (*func)(Field) )
 {
     for ( int row = 0; row < m->rows; row++ )
         for ( int column = 0; column < m->columns; column++ )
