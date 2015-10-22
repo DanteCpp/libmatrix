@@ -112,8 +112,8 @@ matrix_inverse_gauss( Matrix * mat )
     Matrix * i = matrix_new_identity(mat->rows);
     Matrix * m = matrix_new_zero(mat->rows, 2*mat->rows);
 
-    matrix_put_sub(mat,0,0,m);
-    matrix_put_sub(i,0,m->rows,m);
+    matrix_set_sub(mat,0,0,m);
+    matrix_set_sub(i,0,m->rows,m);
 
     int temp;
     Field r, temporary;

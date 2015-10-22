@@ -47,4 +47,6 @@ Matrix * matrix_fork( Matrix * );
 /*operation*/
 #include "matrix_operations.h"
 
+#include "matrix_algorithms.h"
+
 #endif /* _MATRIX_H */

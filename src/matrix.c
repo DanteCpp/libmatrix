@@ -228,7 +228,7 @@ matrix_new_identity( int dim )
     Matrix * d = matrix_new(1,dim);
 
     matrix_fill_Field(d,1);
-    matrix_put_diagonal(d,i);
+    matrix_set_diagonal(d,i);
 
     matrix_destroy(d);
 

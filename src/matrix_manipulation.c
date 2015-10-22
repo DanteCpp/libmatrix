@@ -114,10 +114,16 @@ matrix_get_diagonal( Matrix * m )
 
 
 void
-matrix_put_sub( Matrix * from, int y , int x, Matrix * to )
+matrix_set_value(Matrix * m, int x, int y, Field v)
+{
+  m->values[x][y] = v;
+}
+
+void
+matrix_set_sub( Matrix * from, int y , int x, Matrix * to )
 {
     if( y+from->rows > to->rows || x+from->columns > to->columns )
-         matrix_error("matrix_put_minor(): y+from->rows > to->rows || x+from->columns > to->columns")
+         matrix_error("matrix_set_minor(): y+from->rows > to->rows || x+from->columns > to->columns")
             ;
     for( int row = 0 ; row < from->rows ; row++ )
 		for( int column = 0 ; column < from->columns ; column++ )
@@ -126,35 +132,35 @@ matrix_put_sub( Matrix * from, int y , int x, Matrix * to )
 }
 
 void
-matrix_put_row( Matrix * from, int r , Matrix * to )
+matrix_set_row( Matrix * from, int r , Matrix * to )
 {
     if( from->columns != to->columns )
-        matrix_error("matrix_put_row(): from->columns != to->columns")
+        matrix_error("matrix_set_row(): from->columns != to->columns")
             ;
-    matrix_put_sub(from, 0, r, to);
+    matrix_set_sub(from, 0, r, to);
 }
 
 
 void
-matrix_put_column( Matrix * from, int c , Matrix * to )
+matrix_set_column( Matrix * from, int c , Matrix * to )
 {
     if( from->rows != to->rows )
-        matrix_error("matrix_put_column(): from->rows != to->rows")
+        matrix_error("matrix_set_column(): from->rows != to->rows")
             ;
-    matrix_put_sub(from, c, 0, to);
+    matrix_set_sub(from, c, 0, to);
 }
 
 void
-matrix_put_diagonal( Matrix * d, Matrix * m )
+matrix_set_diagonal( Matrix * d, Matrix * m )
 {
     if( !( matrix_is_vector(d) && matrix_is_square(m)) )
-        matrix_error("matrix_put_diagonal(): !( matrix_isvector(d) && matrix_issquare(m))")
+        matrix_error("matrix_set_diagonal(): !( matrix_isvector(d) && matrix_issquare(m))")
             ;
 
     if( d->rows == 1 )
     {
         if( d->columns != m->columns )
-            matrix_error("matrix_put_diagonal(): d->columns != m->columns ")
+            matrix_error("matrix_set_diagonal(): d->columns != m->columns ")
                 ;
 
         for( int i = 0 ; i < m->rows ; i++ )
@@ -164,7 +170,7 @@ matrix_put_diagonal( Matrix * d, Matrix * m )
     else
     {
         if( d->rows != m->columns )
-            matrix_error("matrix_put_diagonal(): d->rows != m->columns")
+            matrix_error("matrix_set_diagonal(): d->rows != m->columns")
                 ;
 
         for( int i = 0 ; i < m->rows ; i++ )

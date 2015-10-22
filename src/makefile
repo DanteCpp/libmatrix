@@ -17,14 +17,16 @@ HEADERS =\
 	matrix.h\
 	matrix_operations.h\
 	matrix_manipulation.h\
-	matrix_query.h
+	matrix_query.h\
+	matrix_algorithms.h
 
 
 SOURCES =\
 	matrix.c\
 	matrix_operations.c\
 	matrix_manipulation.c\
-	matrix_query.c
+	matrix_query.c\
+	matrix_algorithms.c
 
 OBJECTS = ${SOURCES:.c=.o}
 

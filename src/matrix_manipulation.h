@@ -8,10 +8,11 @@ Matrix * matrix_get_row( Matrix *, int );
 Matrix * matrix_get_column( Matrix *, int );
 Matrix * matrix_get_diagonal( Matrix * );
 
-void matrix_put_sub( Matrix *, int, int, Matrix * );
-void matrix_put_row( Matrix *, int, Matrix * );
-void matrix_put_column( Matrix *, int, Matrix * );
-void matrix_put_diagonal( Matrix *, Matrix * );
+void matrix_set_value( Matrix *, int, int, Field );
+void matrix_set_sub( Matrix *, int, int, Matrix * );
+void matrix_set_row( Matrix *, int, Matrix * );
+void matrix_set_column( Matrix *, int, Matrix * );
+void matrix_set_diagonal( Matrix *, Matrix * );
 
 void matrix_filter( Matrix *, Field (*)(Field) );
 
