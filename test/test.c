@@ -2,11 +2,14 @@
 #include <matrix.h>
 
 int main(){
-  Matrix * m = matrix_new(3,1);
-  matrix_fill_random(m);
-  matrix_print(m);
-  Field norm = matrix_norm_euclide(m);
-  printf("Norm: %.2f\n", norm);
-  matrix_destroy(m);
+  Matrix * v = matrix_new_values(3,3, 1.,1.,0.,
+                                      0.,0.,1.,
+                                      1.,0.,2.);
+  matrix_print(v);
+  Matrix * q = matrix_orthonormalization_gram_schmidt(v);
+  matrix_print(q);
+
+  matrix_destroy(v);
+  matrix_destroy(q);
   return 0;
 }

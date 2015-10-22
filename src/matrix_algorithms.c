@@ -42,25 +42,50 @@ matrix_norm_euclide(Matrix * v){
 }
 
 Matrix *
-matrix_orthonormalization_gram_schmidt(Matrix * m)
+matrix_orthonormalization_gram_schmidt(Matrix * v)
 {
     // # column vectors
-    int n = m->columns;
-    Matrix * q = matrix_fork(m);
+    int n = v->columns;
+    // orthogonal
+    Matrix * t = matrix_fork(v);
+    // t normalized
+    Matrix * q = matrix_fork(v);
 
-    Matrix * r = matrix_new(n,1);
-    Field norm = 0;
+    Matrix * r = matrix_new(n,n);
 
-    int step = 0;
+    Matrix * t1;
+    Matrix * t2;
 
-    while(step < n)
+    //steps counter
+    int i = 0;
+
+    while(i < n)
     {
-      matrix_set_value(r, step,0,
-        matrix_norm_euclide(matrix_get_column(m,step)));
-      matrix_set_column( q, step,  )
+      // r[j][i] = <q[j],v[i]>
+      for(int j=0; j<i; j++)
+        matrix_set_value(r, j,i,
+          matrix_internal_mul(
+            matrix_get_column(q,j),
+            matrix_get_column(v,i)
+          )
+        );
+      //               i-2
+      // t[i] = v[i] - sum( r[k][i]*q[k] )
+      //               k=0
+
+
+
+      // normalization
+      // q[i] = t[i]/sqrt(r[i][i])
+
+
     }
 
-    return m;
+    matrix_destroy(t1);
+    matrix_destroy(t2);
+    matrix_destroy(t);
+    matrix_destroy(r);
+    return q;
 }
 
 #include "matrix.h"
