@@ -1,7 +1,8 @@
+
+#include "matrix.h"
 #include <stdlib.h>
 #include <math.h>
 
-#include "matrix.h"
 
 Field
 matrix_internal_mul(Matrix * v, Matrix * w)
@@ -42,50 +43,51 @@ matrix_norm_euclide(Matrix * v){
 }
 
 Matrix *
-matrix_orthonormalization_gram_schmidt(Matrix * v)
+matrix_gram_schmidt(Matrix * V)
 {
-    // # column vectors
-    int n = v->columns;
-    // orthogonal
-    Matrix * t = matrix_fork(v);
-    // t normalized
-    Matrix * q = matrix_fork(v);
 
-    Matrix * r = matrix_new(n,n);
+  long n = V->rows;
+  long m = V->columns;
 
-    Matrix * t1;
-    Matrix * t2;
+  Matrix * Q = matrix_new_zero(n,m);
+  double r = 0;
+  double norm = 0;
 
-    //steps counter
-    int i = 0;
+  for(int k=0; k<n; k++)
+    norm += (V->values[k][0])*(V->values[k][0])
+      ;
+    norm = sqrt(norm);
 
-    while(i < n)
+  for(int k=0; k<n; k++)
+    (Q->values[k][0])=(V->values[k][0])/norm
+      ;
+  norm = 0;
+
+  for(int i =1; i < m; i++)
+  {
+    for(int k=0; k<n; k++)
+      Q->values[k][i]=V->values[k][i]
+        ;
+    for(int j=0; j<i;j++)
     {
-      // r[j][i] = <q[j],v[i]>
-      for(int j=0; j<i; j++)
-        matrix_set_value(r, j,i,
-          matrix_internal_mul(
-            matrix_get_column(q,j),
-            matrix_get_column(v,i)
-          )
-        );
-      //               i-2
-      // t[i] = v[i] - sum( r[k][i]*q[k] )
-      //               k=0
-
-
-
-      // normalization
-      // q[i] = t[i]/sqrt(r[i][i])
-
-
+      for(int k=0; k<n; k++)
+        r+=(Q->values[k][j])*(V->values[k][i])
+          ;
+      for(int k=0; k<n; k++)
+        (Q->values[k][i])-=(r*(Q->values[k][j]))
+          ;
+      r = 0;
     }
+    for(int k=0; k<n; k++)
+      norm += (Q->values[k][i])*(Q->values[k][i])
+        ;
+    norm = sqrt(norm);
 
-    matrix_destroy(t1);
-    matrix_destroy(t2);
-    matrix_destroy(t);
-    matrix_destroy(r);
-    return q;
+    for(int k=0; k<n; k++)
+      Q->values[k][i]=(Q->values[k][i])/norm
+        ;
+    norm = 0;
+  }
+
+  return Q;
 }
-
-#include "matrix.h"

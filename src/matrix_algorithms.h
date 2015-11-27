@@ -5,7 +5,7 @@ Field matrix_norm_euclide(Matrix *);
 
 Field matrix_internal_mul(Matrix *, Matrix *);
 
-Matrix * matrix_orthonormalization_gram_schmidt(Matrix *);
+Matrix * matrix_gram_schmidt(Matrix * );
 
 
 #endif /* _MATRIX_ALGORITHMS_H */

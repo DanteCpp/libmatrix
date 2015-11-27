@@ -28,7 +28,7 @@ void matrix_destroy( Matrix * );
 /*Fill*/
 void matrix_fill( Matrix *, ... );
 void matrix_fill_random( Matrix *);
-void matrix_fill_Field( Matrix *, Field );
+void matrix_fill_field( Matrix *, Field );
 void matrix_fill_triangular_up( Matrix * );
 void matrix_fill_triangular_down( Matrix * );
 

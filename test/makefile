@@ -1,3 +1,4 @@
+
 all:
-	gcc test.c -o test.out -g -lm -lmatrix
+	gcc test.c -o test.out -g -lmatrix -lm
 	./test.out
